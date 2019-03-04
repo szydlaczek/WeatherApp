@@ -5,14 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Helpers\" />
     <Folder Include="Users\" />
-    <Folder Include="Weather\Commands\AddCity\" />
     <Folder Include="Weather\Queries\GetWeatherDetail\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="6.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WeatherApp.Domain\WeatherApp.Domain.csproj" />
+    <ProjectReference Include="..\WeatherApp.Persistence\WeatherApp.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

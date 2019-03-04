@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7BC8B6CB-8736-4391-8DB6-BD3C180B5652}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E5ECE2B4-F7E4-45AF-955B-C4E1AA4A88C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D351B65E-3FAE-4A4F-8A4F-6752618E39E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{47B1128E-7553-4DBF-92EF-7C98A730DFEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApp.Application", "WeatherApp.Application\WeatherApp.Application.csproj", "{321A6702-6EF0-4757-BEDC-54BBDE726A08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApp.Domain", "WeatherApp.Domain\WeatherApp.Domain.csproj", "{CAD730EB-B2AC-464C-9AAB-B503BED0BF5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApp.Persistence", "WeatherApp.Persistence\WeatherApp.Persistence.csproj", "{1E4A2045-1F24-4817-8BC4-65D5C2E8AF98}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{321A6702-6EF0-4757-BEDC-54BBDE726A08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{321A6702-6EF0-4757-BEDC-54BBDE726A08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{321A6702-6EF0-4757-BEDC-54BBDE726A08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{321A6702-6EF0-4757-BEDC-54BBDE726A08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAD730EB-B2AC-464C-9AAB-B503BED0BF5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAD730EB-B2AC-464C-9AAB-B503BED0BF5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAD730EB-B2AC-464C-9AAB-B503BED0BF5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAD730EB-B2AC-464C-9AAB-B503BED0BF5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E4A2045-1F24-4817-8BC4-65D5C2E8AF98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E4A2045-1F24-4817-8BC4-65D5C2E8AF98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E4A2045-1F24-4817-8BC4-65D5C2E8AF98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E4A2045-1F24-4817-8BC4-65D5C2E8AF98}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E5ECE2B4-F7E4-45AF-955B-C4E1AA4A88C2} = {7BC8B6CB-8736-4391-8DB6-BD3C180B5652}
+		{D351B65E-3FAE-4A4F-8A4F-6752618E39E3} = {7BC8B6CB-8736-4391-8DB6-BD3C180B5652}
+		{47B1128E-7553-4DBF-92EF-7C98A730DFEE} = {7BC8B6CB-8736-4391-8DB6-BD3C180B5652}
+		{321A6702-6EF0-4757-BEDC-54BBDE726A08} = {E5ECE2B4-F7E4-45AF-955B-C4E1AA4A88C2}
+		{CAD730EB-B2AC-464C-9AAB-B503BED0BF5E} = {E5ECE2B4-F7E4-45AF-955B-C4E1AA4A88C2}
+		{1E4A2045-1F24-4817-8BC4-65D5C2E8AF98} = {D351B65E-3FAE-4A4F-8A4F-6752618E39E3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10CFDF29-FCAF-4C43-8715-B05447B34F83}
+	EndGlobalSection
+EndGlobal

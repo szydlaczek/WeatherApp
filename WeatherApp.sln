@@ -11,13 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{47B1128E-7553-4DBF-92EF-7C98A730DFEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApp.Application", "WeatherApp.Application\WeatherApp.Application.csproj", "{321A6702-6EF0-4757-BEDC-54BBDE726A08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherApp.Application", "WeatherApp.Application\WeatherApp.Application.csproj", "{321A6702-6EF0-4757-BEDC-54BBDE726A08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApp.Domain", "WeatherApp.Domain\WeatherApp.Domain.csproj", "{CAD730EB-B2AC-464C-9AAB-B503BED0BF5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherApp.Domain", "WeatherApp.Domain\WeatherApp.Domain.csproj", "{CAD730EB-B2AC-464C-9AAB-B503BED0BF5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApp.Persistence", "WeatherApp.Persistence\WeatherApp.Persistence.csproj", "{1E4A2045-1F24-4817-8BC4-65D5C2E8AF98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherApp.Persistence", "WeatherApp.Persistence\WeatherApp.Persistence.csproj", "{1E4A2045-1F24-4817-8BC4-65D5C2E8AF98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApp.WebUI", "WeatherApp.WebUI\WeatherApp.WebUI.csproj", "{D12C6286-0461-4028-BB5D-5F2F9C59EB51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherApp.WebUI", "WeatherApp.WebUI\WeatherApp.WebUI.csproj", "{D12C6286-0461-4028-BB5D-5F2F9C59EB51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApp.Infrastructure", "WeatherApp.Infrastructure\WeatherApp.Infrastructure.csproj", "{338D2B4E-384F-42E1-839D-95E75464FD8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{D12C6286-0461-4028-BB5D-5F2F9C59EB51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D12C6286-0461-4028-BB5D-5F2F9C59EB51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D12C6286-0461-4028-BB5D-5F2F9C59EB51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{338D2B4E-384F-42E1-839D-95E75464FD8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{338D2B4E-384F-42E1-839D-95E75464FD8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{338D2B4E-384F-42E1-839D-95E75464FD8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{338D2B4E-384F-42E1-839D-95E75464FD8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{CAD730EB-B2AC-464C-9AAB-B503BED0BF5E} = {E5ECE2B4-F7E4-45AF-955B-C4E1AA4A88C2}
 		{1E4A2045-1F24-4817-8BC4-65D5C2E8AF98} = {D351B65E-3FAE-4A4F-8A4F-6752618E39E3}
 		{D12C6286-0461-4028-BB5D-5F2F9C59EB51} = {47B1128E-7553-4DBF-92EF-7C98A730DFEE}
+		{338D2B4E-384F-42E1-839D-95E75464FD8A} = {D351B65E-3FAE-4A4F-8A4F-6752618E39E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10CFDF29-FCAF-4C43-8715-B05447B34F83}

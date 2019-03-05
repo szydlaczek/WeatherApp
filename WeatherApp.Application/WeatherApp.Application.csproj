@@ -7,7 +7,7 @@
   <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="Users\" />
-    <Folder Include="Weather\Queries\GetWeatherDetail\" />
+    <Folder Include="Weather\Queries\GetAllCities\" />
   </ItemGroup>
 
   <ItemGroup>

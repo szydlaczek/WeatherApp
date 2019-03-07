@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WeatherApp.Domain.Entities
+﻿namespace WeatherApp.Domain.Entities
 {
     public class Main
     {

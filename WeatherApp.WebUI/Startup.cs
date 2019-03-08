@@ -7,7 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using WeatherApp.Application.Interfaces;
 using WeatherApp.Application.Weather.Commands.AddCity;
+using WeatherApp.Infrastructure.Identity;
 using WeatherApp.Persistence.Context;
 
 namespace WeatherApp.WebUI
@@ -31,6 +33,7 @@ namespace WeatherApp.WebUI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddMediatR(typeof(AddCityCommandHandler).GetTypeInfo().Assembly);
+            services.AddScoped<ILoginService, LoginService>();
             services.AddDbContext<ApplicationDbContext>(options=>
             options.UseSqlServer(Configuration.GetConnectionString("WeatherDatabase")));
 

@@ -1,7 +1,5 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-
 
 namespace WeatherApp.Application.Infrastructure
 {

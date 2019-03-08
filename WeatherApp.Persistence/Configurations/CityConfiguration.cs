@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using WeatherApp.Domain.Entities;
 
 namespace WeatherApp.Persistence.Configurations
@@ -17,14 +14,13 @@ namespace WeatherApp.Persistence.Configurations
                 .WithOne(c => c.City)
                 .HasForeignKey<Main>(fk => fk.CityId);
 
-            builder.HasOne(w=>w.Wind)
+            builder.HasOne(w => w.Wind)
                 .WithOne(c => c.City)
                 .HasForeignKey<Wind>(fk => fk.CityId);
 
             builder.HasOne(w => w.Weather)
                .WithOne(c => c.City)
                .HasForeignKey<Weather>(fk => fk.CityId);
-
         }
     }
 }

@@ -25,10 +25,7 @@ namespace WeatherApp.Application.Weather.Queries.GetWeatherDetail
                 .Include(m => m.Main)                
                 .FirstOrDefaultAsync(c => c.Id == request.CityId);
 
-            var vm = new WeatherDetailPreview
-            {
-                
-            }
+            return null;
 
         }
     }

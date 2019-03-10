@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using WeatherApp.Application.Infrastructure;
 
-namespace WeatherApp.Application.Weather.Commands.AddCity
+namespace WeatherApp.Application.Cities.Commands.AddCity
 {
     public class AddCityCommand : IRequest<Response>
     {

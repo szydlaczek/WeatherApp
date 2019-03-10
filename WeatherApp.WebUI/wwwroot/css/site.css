@@ -63,3 +63,7 @@ footer {
     
     text-align: center;
 }
+.loginForm {
+    margin: auto;
+    width: 40% 
+}

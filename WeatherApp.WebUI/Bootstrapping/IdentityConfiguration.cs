@@ -11,9 +11,9 @@ namespace WeatherApp.WebUI.Bootstrapping
         public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
             services
-                .AddSingleton<IRoleStore<Role>, CustomRoleStore>()
-                .AddSingleton<CustomRoleStore>()
-                .AddSingleton<IUserStore<User>, CustomUserStore>();
+                .AddScoped<IRoleStore<Role>, CustomRoleStore>()
+                .AddScoped<CustomRoleStore>()
+                .AddScoped<IUserStore<User>, CustomUserStore>();
 
             services.AddIdentity<User, Role>(ConfigureIdentityOptions)
                 .AddDefaultTokenProviders();
@@ -24,11 +24,12 @@ namespace WeatherApp.WebUI.Bootstrapping
         }
         private static void ConfigureIdentityOptions(IdentityOptions options)
         {
-            options.Password.RequireDigit = true;
-            options.Password.RequireLowercase = true;
+            options.Password.RequireDigit = false;
+            options.Password.RequireLowercase = false;
             options.Password.RequiredLength = 6;
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequireUppercase = false;
+            
         }
     }
 }

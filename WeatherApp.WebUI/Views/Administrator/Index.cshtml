@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<button id="addCity" data-target="modal-container" class="btn modal-trigger">Modal</button>
+
+<!-- Modal Structure -->
+
+<script>
+    $(document).ready(function () {
+        $('.modal').modal();
+        $('#addCity').click(function (event) {
+            
+            $.ajax({
+                url: "/Administrator/AddCity",
+
+            })
+                .done(function (html) {
+                    $(html).appendTo('#modal-container');
+                    
+                })
+                .fail(function (data) {
+                    console.log(data);
+                });
+            
+        })
+        
+    });
+</script>

@@ -2,7 +2,7 @@
 
 namespace WeatherApp.Application.Users.Commands.SignUpUser
 {
-    public class LoginUserCommandValidator : AbstractValidator<LoginUserUserCommand>
+    public class LoginUserCommandValidator : AbstractValidator<LoginUserCommand>
     {
         public LoginUserCommandValidator()
         {

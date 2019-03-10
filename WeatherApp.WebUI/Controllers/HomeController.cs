@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using WeatherApp.WebUI.Models;
 
 namespace WeatherApp.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly IMediator _mediator;
-        public HomeController(IMediator mediator)
+        public HomeController(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
         }
+
         public IActionResult Index()
         {
             return View();

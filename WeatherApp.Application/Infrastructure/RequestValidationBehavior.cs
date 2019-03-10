@@ -39,7 +39,7 @@ namespace WeatherApp.Application.Infrastructure
 
             foreach (var failure in failures)
             {
-                response.AddError(failure.PropertyName + " " + failure.ErrorMessage.ToLower());
+                response.AddError(failure.ErrorMessage.ToLower());
             }
 
             return Task.FromResult(response as TResponse);

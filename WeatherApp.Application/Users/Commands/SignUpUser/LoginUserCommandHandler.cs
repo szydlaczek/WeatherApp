@@ -6,7 +6,7 @@ using WeatherApp.Application.Interfaces;
 
 namespace WeatherApp.Application.Users.Commands.SignUpUser
 {
-    public class LoginUserCommandHandler : IRequestHandler<LoginUserUserCommand, Response>
+    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, Response>
     {
         private readonly ILoginService _loginService;
 
@@ -15,7 +15,7 @@ namespace WeatherApp.Application.Users.Commands.SignUpUser
             _loginService = loginService;
         }
 
-        public async Task<Response> Handle(LoginUserUserCommand request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
             var result = await _loginService.LoginUser(request.Password, request.UserName);
             return result;

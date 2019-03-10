@@ -12,7 +12,9 @@ using WeatherApp.Application.Infrastructure;
 using WeatherApp.Application.Interfaces;
 using WeatherApp.Application.Users.Commands.SignUpUser;
 using WeatherApp.Application.Weather.Commands.AddCity;
+using WeatherApp.Infrastructure.Helpers;
 using WeatherApp.Infrastructure.Identity;
+using WeatherApp.Infrastructure.Services;
 using WeatherApp.Persistence.Context;
 using WeatherApp.WebUI.Bootstrapping;
 
@@ -41,12 +43,14 @@ namespace WeatherApp.WebUI
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddMediatR(typeof(AddCityCommandHandler).GetTypeInfo().Assembly);
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IWeatherService, WeatherService>();
             services.AddDbContext<ApplicationDbContext>(options=>
             options.UseSqlServer(Configuration.GetConnectionString("WeatherDatabase")));
             services.AddIdentity();
             services.AddMvc(options => options.ModelValidatorProviders.Clear())
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginUserCommandValidator>())
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.Configure<ApiSettings>(options => Configuration.GetSection("WeatherDataSource").Bind(options));
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.SuppressModelStateInvalidFilter = true;

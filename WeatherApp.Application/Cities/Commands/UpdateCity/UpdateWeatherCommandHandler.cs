@@ -1,18 +1,12 @@
 ﻿using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using WeatherApp.Application.Adapter;
+using WeatherApp.Application.Helpers;
 using WeatherApp.Application.Infrastructure;
 using WeatherApp.Application.Interfaces;
-using WeatherApp.Domain.Entities;
 using WeatherApp.Persistence.Context;
-using WeatherApp.Application.Helpers;
 
 namespace WeatherApp.Application.Cities.Commands.UpdateCity
 {
@@ -20,6 +14,7 @@ namespace WeatherApp.Application.Cities.Commands.UpdateCity
     {
         private readonly ApplicationDbContext _context;
         private IWeatherService _weatherService;
+
         public UpdateWeatherCommandHandler(ApplicationDbContext context, IWeatherService weatherService)
         {
             _context = context;
@@ -28,20 +23,30 @@ namespace WeatherApp.Application.Cities.Commands.UpdateCity
 
         public async Task<Response> Handle(UpdateWeatherCommand request, CancellationToken cancellationToken)
         {
-            var cities = await _context.Cities.Include(c=>c.Main).Include(d=>d.Weather).Include(a=>a.Wind).ToListAsync();
-            var apiResult = await _weatherService.GetCitiesWeather(cities.Select(c=>c.Name).ToList());           
+            var cities = await _context.Cities
+                .Include(c => c.Main)
+                .Include(d => d.Weather)
+                .Include(a => a.Wind)
+                .ToListAsync();
 
             foreach (var city in cities)
             {
-                var cityFromApi = apiResult.Where(c => string.Equals(c.Name, city.Name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
-                if (cityFromApi!=null)
+                var resultFromApi = await _weatherService.GetWeather(city.Name);
+                if (resultFromApi != null)
                 {
-                    city.Map(cityFromApi);
-                    
+                    city.Map(resultFromApi);
                 }
             }
+
             await _context.SaveChangesAsync();
-            return new Response();
+            var response = new Response();
+
+            foreach (string error in _weatherService.Errors)
+            {
+                response.AddError(error);
+            }
+
+            return response;
         }
     }
 }

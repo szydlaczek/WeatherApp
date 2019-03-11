@@ -17,6 +17,7 @@ using WeatherApp.Infrastructure.Identity;
 using WeatherApp.Infrastructure.Services;
 using WeatherApp.Persistence.Context;
 using WeatherApp.WebUI.Bootstrapping;
+using WeatherApp.WebUI.Filters;
 
 namespace WeatherApp.WebUI
 {
@@ -32,7 +33,7 @@ namespace WeatherApp.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            services.AddMvc(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)));
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -62,7 +63,8 @@ namespace WeatherApp.WebUI
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/Home/Error");
             }
             else
             {

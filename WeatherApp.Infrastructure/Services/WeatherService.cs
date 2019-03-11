@@ -26,39 +26,38 @@ namespace WeatherApp.Infrastructure.Services
             Errors = new ReadOnlyCollection<string>(_messages);
         }
 
-        public async Task<ICollection<CityWeatherDto>> GetCitiesWeather(List<string> citiesNames)
+        public async Task<CityWeatherDto> GetWeather(string cityName)
         {
-            List<CityWeatherDto> list = new List<CityWeatherDto>();
-
-            foreach (string city in citiesNames)
+            CityWeatherDto cityWeather = null;
+            using (var client = new HttpClient())
             {
-                using (var client = new HttpClient())
+                client.Timeout = new TimeSpan(0, 0, 4);
+                var result = await client.GetAsync(CreateURL(cityName));
+                if (result.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    client.Timeout = new TimeSpan(0, 0, 4);
-                    var result = await client.GetAsync(CreateURL(city));
-                    if (result.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var jsonResult = await result.Content.ReadAsStringAsync();
-                        CityWeatherDto cityWeather = JsonConvert.DeserializeObject<CityWeatherDto>(jsonResult);
-                        list.Add(cityWeather);
-                    }
-                    else
-                        _messages.Add($"Cannot download data for city {city}");
+                    var jsonResult = await result.Content.ReadAsStringAsync();
+                    cityWeather = JsonConvert.DeserializeObject<CityWeatherDto>(jsonResult);
+
                 }
+                else
+                    _messages.Add($"Cannot download data for city {cityName}");
             }
-            return list;
-        }        
+            return cityWeather;
+        }
 
         private string CreateURL(string city)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("http://");
             sb.Append(_apiSettings.Value.ApiPath);
+            city = city.Replace(" ", String.Empty);
             sb.Append(city);
             sb.Append("&");
             sb.Append("appid=");
             sb.Append(_apiSettings.Value.Key);
             return sb.ToString();
         }
+
+        
     }
 }

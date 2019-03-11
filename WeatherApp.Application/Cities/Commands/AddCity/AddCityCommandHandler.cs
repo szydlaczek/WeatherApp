@@ -1,10 +1,7 @@
 ﻿using Mapster;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using WeatherApp.Application.Adapter;
 using WeatherApp.Application.Cities.Commands.AddCity;
 using WeatherApp.Application.Helpers;
 using WeatherApp.Application.Infrastructure;
@@ -26,20 +23,21 @@ namespace WeatherApp.Application.Weather.Commands.AddCity
         }
 
         public async Task<Response> Handle(AddCityCommand request, CancellationToken cancellationToken)
-        {            
-            var apiResult = await _weatherService.GetCitiesWeather(new List<string> { request.CityName });
-            foreach (var cityWeather in apiResult)
+        {
+            var result = await _weatherService.GetWeather(request.CityName);
+            if (result != null)
             {
                 City city = new City();
-                city.Map(cityWeather);
+                city.Map(result);
                 _context.Cities.Add(city);
             }
+            await _context.SaveChangesAsync();
             Response response = new Response();
-            foreach(string error in _weatherService.Errors)
+            foreach (string error in _weatherService.Errors)
             {
                 response.AddError(error);
             }
-            return response;            
+            return response;
         }
     }
 }

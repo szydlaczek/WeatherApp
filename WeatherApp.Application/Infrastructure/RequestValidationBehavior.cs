@@ -37,7 +37,7 @@ namespace WeatherApp.Application.Infrastructure
         {
             var response = new Response();
 
-            foreach (var failure in failures)
+            foreach (var failure in failures.Distinct())
             {
                 response.AddError(failure.ErrorMessage.ToLower());
             }

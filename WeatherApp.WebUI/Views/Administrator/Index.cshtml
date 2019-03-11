@@ -1,31 +1,64 @@
-﻿
+﻿@model WeatherApp.Application.Cities.Commands.AddCity.AddCityCommand
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="row">
+    <div class="col s6">
+        <button id="addCity" data-target="modal-container" class="btn modal-trigger">Add city</button>
+    </div>
+    <div class="col s6">
 
-<button id="addCity" data-target="modal-container" class="btn modal-trigger">Modal</button>
+    </div>
+</div>
+    
 
-<!-- Modal Structure -->
+    <div id="modal-container" class="modal">
+        <div class="modal-content">
+            <form id="AddCityForm" asp-controller="Administrator" asp-action="AddCity">
+                <div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="city" name="CityName" type="text" class="validate">
+                            <label for="CityName">City</label>
+                        </div>
+                    </div>
+                    <span id="error"></span>
+                    <div class="row">
+                        <button class="btn waves-effect waves-light" type="submit" id="submit" name="action">
+                            Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+    @section scripts {
 
-<script>
-    $(document).ready(function () {
-        $('.modal').modal();
-        $('#addCity').click(function (event) {
-            
-            $.ajax({
-                url: "/Administrator/AddCity",
-
-            })
-                .done(function (html) {
-                    $(html).appendTo('#modal-container');
-                    
-                })
-                .fail(function (data) {
-                    console.log(data);
+        <script>
+            $(function () {
+                $('#submit').on('click', function (evt) {
+                    evt.preventDefault();
+                    $.post($('form').attr('action'), $('form').serialize(), function () {
+                        
+                    }).done(() => {
+                        location.reload();
+                    }).fail((data) => {
+                        console.log(data);
+                        var error = [...data.responseJSON.errors];
+                        $('#error').text(error[0]);
+                    })
                 });
-            
-        })
-        
-    });
-</script>
+            });
+        </script>
+    }
+    <script>
+        $(document).ready(function () {
+            $('.modal').modal();
+
+        });
+    </script>

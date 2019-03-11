@@ -6,6 +6,8 @@
     <title>@ViewData["Title"] - WeatherApp</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <link rel="stylesheet" href="~/materialize/css/materialize.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -37,9 +39,7 @@
             </div>
         </div>
     </footer>
-    <div id="modal-container" class="modal">
-        
-    </div>
+    @RenderSection("Scripts", required: false)
     <script src="~/materialize/js/init.js"></script>
     <script src="~/materialize/js/materialize.min.js"></script>
 </body>

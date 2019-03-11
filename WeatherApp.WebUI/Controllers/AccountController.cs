@@ -1,25 +1,21 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using WeatherApp.Application.Users.Commands.SignUpUser;
-using WeatherApp.Domain.Entities;
 
 namespace WeatherApp.WebUI.Controllers
 {
     public class AccountController : BaseController
     {
-        UserManager<User> _manager;
-        public AccountController(IMediator mediator, UserManager<User> manager) : base(mediator)
+        public AccountController(IMediator mediator) : base(mediator)
         {
-            _manager = manager;
         }
 
-        public async Task<IActionResult> Login()
+        public IActionResult Login()
         {
-            //var result=await _manager.CreateAsync(new Domain.Entities.User { Id = Guid.NewGuid().ToString(), Email = "szydlak@gmail.com", UserName = "szydlo.grzegorz" }, "123456");
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction(nameof(AdministratorController.Index), typeof(AdministratorController).Name.Replace("Controller", string.Empty));
             return View();
         }
 
@@ -35,7 +31,6 @@ namespace WeatherApp.WebUI.Controllers
                 ModelState.AddModelError("login", result.Errors.FirstOrDefault());
                 return View();
             }
-                
         }
     }
 }

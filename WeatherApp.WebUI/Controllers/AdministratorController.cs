@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 using WeatherApp.Application.Cities.Commands.AddCity;
 using WeatherApp.Application.Cities.Commands.UpdateCity;
@@ -19,12 +20,14 @@ namespace WeatherApp.WebUI.Controllers
         {
             return View();
         }
-
-        public async Task<IActionResult> AddCity()
-        {
-            var command = new UpdateWeatherCommand();
+        [HttpPost]
+        public async Task<IActionResult> AddCity(AddCityCommand command)
+        {            
             var result = await _mediator.Send(command);
-            return PartialView();
+            if (result.Errors.Any())
+                return BadRequest(result);
+            else
+                return Ok();
         }
     }
 }

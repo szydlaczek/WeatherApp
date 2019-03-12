@@ -1,0 +1,26 @@
+﻿@model WeatherApp.WebUI.ViewModels.CityViewModel
+<div id="modal-container" class="modal">
+    <div class="modal-content">
+        <form id="AddCityForm" asp-controller="Administrator" asp-action="AddCity">
+            <div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="CityName" id="city" name="CityName" type="text" class="validate">
+                        <label asp-for="CityName">City</label>
+                        <span asp-validation-for="CityName" class="text-danger"></span>
+                    </div>
+                </div>
+                <span id="error"></span>
+                <div class="row">
+                    <button class="btn waves-effect waves-light" type="submit" id="submit" name="action">
+                        Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>

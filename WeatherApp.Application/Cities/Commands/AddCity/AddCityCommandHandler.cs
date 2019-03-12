@@ -30,8 +30,9 @@ namespace WeatherApp.Application.Weather.Commands.AddCity
                 City city = new City();
                 city.Map(result);
                 _context.Cities.Add(city);
+                await _context.SaveChangesAsync();
             }
-            await _context.SaveChangesAsync();
+            
             Response response = new Response();
             foreach (string error in _weatherService.Errors)
             {

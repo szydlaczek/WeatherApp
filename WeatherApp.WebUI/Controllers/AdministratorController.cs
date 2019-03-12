@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WeatherApp.Application.Cities.Commands.AddCity;
 using WeatherApp.Application.Cities.Commands.UpdateCity;
 using WeatherApp.Application.Weather.Commands.AddCity;
+using WeatherApp.WebUI.ViewModels;
 
 namespace WeatherApp.WebUI.Controllers
 {
@@ -21,8 +22,9 @@ namespace WeatherApp.WebUI.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> AddCity(AddCityCommand command)
-        {            
+        public async Task<IActionResult> AddCity(CityViewModel viewModel)
+        {
+            var command = new AddCityCommand() { CityName=viewModel.CityName};
             var result = await _mediator.Send(command);
             if (result.Errors.Any())
                 return BadRequest(result);

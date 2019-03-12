@@ -1,4 +1,4 @@
-﻿@model WeatherApp.Application.Cities.Commands.AddCity.AddCityCommand
+﻿@using WeatherApp.WebUI.ViewModels;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,54 +11,38 @@
 
     </div>
 </div>
+<partial name="_AddCityForm" model="new CityViewModel()"/>
+
+@section scripts {
     
-
-    <div id="modal-container" class="modal">
-        <div class="modal-content">
-            <form id="AddCityForm" asp-controller="Administrator" asp-action="AddCity">
-                <div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="city" name="CityName" type="text" class="validate">
-                            <label for="CityName">City</label>
-                        </div>
-                    </div>
-                    <span id="error"></span>
-                    <div class="row">
-                        <button class="btn waves-effect waves-light" type="submit" id="submit" name="action">
-                            Submit
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-        </div>
-    </div>
-    @section scripts {
-
-        <script>
-            $(function () {
-                $('#submit').on('click', function (evt) {
-                    evt.preventDefault();
+    <script>
+        $(function () {
+            $('#AddCityForm').submit(function (e) {
+                e.preventDefault();
+                var form = $('#AddCityForm');                
+                form.validate();
+                if (form.valid()) {
                     $.post($('form').attr('action'), $('form').serialize(), function () {
-                        
-                    }).done(() => {
-                        location.reload();
+                    }).done((data) => {
+                        console.log(data);
                     }).fail((data) => {
                         console.log(data);
                         var error = [...data.responseJSON.errors];
                         $('#error').text(error[0]);
                     })
-                });
-            });
-        </script>
-    }
-    <script>
-        $(document).ready(function () {
-            $('.modal').modal();
+                }
+                else
+                    alert("Not valid");
 
+            })
         });
+
+       
     </script>
+}
+<script>
+    $(document).ready(function () {
+        $('.modal').modal();
+
+    });
+</script>

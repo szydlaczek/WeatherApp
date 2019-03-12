@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using WeatherApp.Application.Weather.Queries.GetAllCitiesWeather;
 using WeatherApp.WebUI.Models;
 
 namespace WeatherApp.WebUI.Controllers
@@ -11,9 +13,10 @@ namespace WeatherApp.WebUI.Controllers
         {
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var result = await _mediator.Send(new GetAllCitiesWeatherQuery());
+            return View(result);
         }
 
         public IActionResult Privacy()

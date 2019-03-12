@@ -7,10 +7,8 @@ namespace WeatherApp.Application.Cities.Commands.AddCity
         public AddCityCommandValidator()
         {
             RuleFor(c => c.CityName)
-                .NotEmpty()
-                .WithMessage("City name cannot be empty")
-                .NotNull()
-                .WithMessage("City name cannot be empty");
-        }
+                .Must(d=>!string.IsNullOrEmpty(d))                
+                .WithMessage("City name cannot be empty");                
+        }       
     }
 }

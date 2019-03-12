@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using WeatherApp.Application.Dtos;
 using WeatherApp.Persistence.Context;
 
 namespace WeatherApp.Application.Weather.Queries.GetAllCitiesWeather
@@ -23,28 +22,9 @@ namespace WeatherApp.Application.Weather.Queries.GetAllCitiesWeather
             var cities = await _context.Cities
                 .Include(c => c.Main)
                 .Include(d => d.Weather)
-                .Include(a => a.Wind)
-                .ToListAsync();
-            var result = cities.Select(c => new CityWeatherPreview
-            {
-                LastUpdate = c.LastUpdate,
-                Name = c.Name,
-                Main = new MainPreview
-                {
-                    Humidity = c.Main.Humidity,
-                    Pressure = c.Main.Pressure,
-                    Temperature = c.Main.Temperature
-                },
-                Weather = new WeatherPreview
-                {
-                    Description = c.Weather.Description,
-                    Main = c.Weather.Main
-                },
-                Wind = new WindPreview
-                {
-                    Speed = c.Wind.Speed
-                }
-            }).ToList();
+                .Include(a => a.Wind).ToListAsync();
+
+            var result = cities.AsQueryable().Select(CityWeatherPreview.Projection).ToList();
 
             return result;
         }

@@ -4,32 +4,6 @@
 }
 <div class="section">
     <!--   Icon Section   -->
-    <div class="row">        
-        @foreach(var item in Model)
-        {
-            <div class="col s12 m4">
-                <h2 class="center light-blue-text">@item.Name</h2>
-                <p>Date: @item.LastUpdate.ToString("yyyy-MM-dd HH:mm")</p>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Temperature:</td>
-                            <td>@item.Main.Temperature</td>
-                        </tr>
-                        <tr>
-                            <td>Humidity:</td>
-                            <td>@item.Main.Humidity</td>
-                        </tr>
-                        <tr>
-                            <td>Pressure:</td>
-                            <td>@item.Main.Pressure</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        }
-    </div>
-    
-
+    <partial name="_CityCollection" model="@Model" />
 </div>
 

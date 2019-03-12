@@ -1,2 +1,21 @@
-﻿
-
+﻿@model WeatherApp.Application.Weather.Queries.GetAllCitiesWeather.CityWeatherPreview
+<div class="col s12 m4">
+    <h2 class="center light-blue-text">@Model.Name</h2>
+    <p>Date: @Model.LastUpdate.ToString("yyyy-MM-dd HH:mm")</p>
+    <table>
+        <tbody>
+            <tr>
+                <td>Temperature:</td>
+                <td>@Model.Main.Temperature</td>
+            </tr>
+            <tr>
+                <td>Humidity:</td>
+                <td>@Model.Main.Humidity</td>
+            </tr>
+            <tr>
+                <td>Pressure:</td>
+                <td>@Model.Main.Pressure</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

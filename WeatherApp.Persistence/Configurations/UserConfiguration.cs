@@ -14,7 +14,13 @@ namespace WeatherApp.Persistence.Configurations
                 .WithOne(u => u.User)
                 .HasForeignKey(fk => fk.UserId);
 
-            builder.HasData(new User { Email = "szydlak@gmail.com", Id = Guid.NewGuid().ToString(), Password = "AQAAAAEAACcQAAAAEFW6zz2ufQ2jEvYA45ZIRW9Rc2I2t7kkUuwB5LucJRIxw6ayI+5isC9i9XIkd+M5rw==", UserName = "szydlo.grzegorz" }); //123456
+            builder.HasData(new User
+            {
+                Email = "szydlak@gmail.com",
+                Id = Guid.NewGuid().ToString(),
+                Password = "AQAAAAEAACcQAAAAEFW6zz2ufQ2jEvYA45ZIRW9Rc2I2t7kkUuwB5LucJRIxw6ayI+5isC9i9XIkd+M5rw==", //123456
+                UserName = "szydlo.grzegorz"
+            }); 
             
         }
     }

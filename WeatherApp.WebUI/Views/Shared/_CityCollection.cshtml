@@ -1,0 +1,7 @@
+﻿@model ICollection<WeatherApp.Application.Weather.Queries.GetAllCitiesWeather.CityWeatherPreview>
+<div class="row" id="cityCollection">
+    @foreach (var item in Model)
+    {
+        <partial name="_WeatherItem" model="item" />
+    }
+</div>

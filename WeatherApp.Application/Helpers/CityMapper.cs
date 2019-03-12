@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 using WeatherApp.Application.Dtos;
 using WeatherApp.Domain.Entities;
 
@@ -30,6 +32,7 @@ namespace WeatherApp.Application.Helpers
             city.Weather.Description = cityDto.Weather.FirstOrDefault().Description;
             city.Weather.Main = cityDto.Weather.FirstOrDefault().Main;
             city.LastUpdate = cityDto.LastUpdate;
-        }
+        }    
+
     }
 }

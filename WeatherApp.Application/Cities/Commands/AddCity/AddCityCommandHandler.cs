@@ -6,6 +6,7 @@ using WeatherApp.Application.Cities.Commands.AddCity;
 using WeatherApp.Application.Helpers;
 using WeatherApp.Application.Infrastructure;
 using WeatherApp.Application.Interfaces;
+using WeatherApp.Application.Weather.Queries.GetAllCitiesWeather;
 using WeatherApp.Domain.Entities;
 using WeatherApp.Persistence.Context;
 
@@ -25,19 +26,24 @@ namespace WeatherApp.Application.Weather.Commands.AddCity
         public async Task<Response> Handle(AddCityCommand request, CancellationToken cancellationToken)
         {
             var result = await _weatherService.GetWeather(request.CityName);
+            Response response = null;
             if (result != null)
             {
                 City city = new City();
                 city.Map(result);
                 _context.Cities.Add(city);
                 await _context.SaveChangesAsync();
+                CityWeatherPreview cityWeatherPreview = CityWeatherPreview.Create(city);
+                response = new Response(cityWeatherPreview);
             }
-            
-            Response response = new Response();
-            foreach (string error in _weatherService.Errors)
+            else
             {
-                response.AddError(error);
+                foreach (string error in _weatherService.Errors)
+                {
+                    response.AddError(error);
+                }
             }
+
             return response;
         }
     }

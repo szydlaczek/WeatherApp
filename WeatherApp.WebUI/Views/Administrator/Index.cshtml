@@ -1,4 +1,5 @@
-﻿@using WeatherApp.WebUI.ViewModels;
+﻿@model ICollection<WeatherApp.Application.Weather.Queries.GetAllCitiesWeather.CityWeatherPreview>
+@using WeatherApp.WebUI.ViewModels;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,8 +9,13 @@
         <button id="addCity" data-target="modal-container" class="btn modal-trigger">Add city</button>
     </div>
     <div class="col s6">
-
+        <button id="updateCities"  class="btn">Update weather</button>
     </div>
+
+</div>
+<div class="section">
+    <!--   Icon Section   -->
+    <partial name="_CityCollection" model="@Model" />
 </div>
 <partial name="_AddCityForm" model="new CityViewModel()"/>
 
@@ -24,9 +30,10 @@
                 if (form.valid()) {
                     $.post($('form').attr('action'), $('form').serialize(), function () {
                     }).done((data) => {
-                        console.log(data);
+                        $('#cityCollection').append(data);
+                        alert("City added");
                     }).fail((data) => {
-                        console.log(data);
+                        
                         var error = [...data.responseJSON.errors];
                         $('#error').text(error[0]);
                     })
@@ -43,6 +50,14 @@
 <script>
     $(document).ready(function () {
         $('.modal').modal();
-
+        $('#updateCities').click(function () {
+            $.post("/Administrator/UpdateCity")
+                .done((data) => {
+                    alert("success")
+                })
+                .fail((data) => {
+                    alert("fail update");
+                })
+        })
     });
 </script>

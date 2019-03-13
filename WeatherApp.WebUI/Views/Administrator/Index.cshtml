@@ -9,23 +9,22 @@
         <button id="addCity" data-target="modal-container" class="btn modal-trigger">Add city</button>
     </div>
     <div class="col s6">
-        <button id="updateCities"  class="btn">Update weather</button>
+        <button id="updateCities" class="btn">Update weather</button>
     </div>
-
 </div>
 <div class="section">
     <!--   Icon Section   -->
     <partial name="_CityCollection" model="@Model" />
 </div>
-<partial name="_AddCityForm" model="new CityViewModel()"/>
+<partial name="_AddCityForm" model="new CityViewModel()" />
 
 @section scripts {
-    
+
     <script>
         $(function () {
             $('#AddCityForm').submit(function (e) {
                 e.preventDefault();
-                var form = $('#AddCityForm');                
+                var form = $('#AddCityForm');
                 form.validate();
                 if (form.valid()) {
                     $.post($('form').attr('action'), $('form').serialize(), function () {
@@ -33,7 +32,7 @@
                         $('#cityCollection').append(data);
                         alert("City added");
                     }).fail((data) => {
-                        
+
                         var error = [...data.responseJSON.errors];
                         $('#error').text(error[0]);
                     })
@@ -43,8 +42,6 @@
 
             })
         });
-
-       
     </script>
 }
 <script>

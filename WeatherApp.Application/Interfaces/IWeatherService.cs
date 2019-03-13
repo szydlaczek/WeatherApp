@@ -7,6 +7,7 @@ namespace WeatherApp.Application.Interfaces
     public interface IWeatherService
     {
         IEnumerable<string> Errors { get; }
-        Task<CityWeatherDto> GetWeather(string cityName);        
+
+        Task<CityWeatherDto> GetWeather(string cityName);
     }
 }

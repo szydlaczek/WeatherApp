@@ -33,7 +33,7 @@ namespace WeatherApp.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options => 
+            services.AddMvc(options =>
             {
                 options.Filters.Add(typeof(CustomExceptionFilterAttribute));
                 options.AllowValidatingTopLevelNodes = false;
@@ -49,7 +49,7 @@ namespace WeatherApp.WebUI
             services.AddMediatR(typeof(AddCityCommandHandler).GetTypeInfo().Assembly);
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IWeatherService, WeatherService>();
-            services.AddDbContext<ApplicationDbContext>(options=>
+            services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("WeatherDatabase")));
             services.AddIdentity();
             services.AddMvc(options => options.ModelValidatorProviders.Clear())

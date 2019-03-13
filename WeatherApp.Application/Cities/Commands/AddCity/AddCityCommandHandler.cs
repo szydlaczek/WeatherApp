@@ -38,6 +38,7 @@ namespace WeatherApp.Application.Weather.Commands.AddCity
             }
             else
             {
+                response = new Response();
                 foreach (string error in _weatherService.Errors)
                 {
                     response.AddError(error);

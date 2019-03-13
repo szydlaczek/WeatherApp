@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WeatherApp.Domain.Entities;
@@ -19,7 +17,7 @@ namespace WeatherApp.Infrastructure.Identity
 
         #endregion Fields
 
-        #region Constructors        
+        #region Constructors
 
         public CustomRoleStore(ApplicationDbContext context)
         {
@@ -91,8 +89,6 @@ namespace WeatherApp.Infrastructure.Identity
 
             role.Name = normalizedName;
             await _context.SaveChangesAsync();
-
-            
         }
 
         public async Task SetRoleNameAsync(Role role, string roleName, CancellationToken cancellationToken)
@@ -103,7 +99,7 @@ namespace WeatherApp.Infrastructure.Identity
             }
 
             role.Name = roleName;
-            await _context.SaveChangesAsync();            
+            await _context.SaveChangesAsync();
         }
 
         public void Dispose()

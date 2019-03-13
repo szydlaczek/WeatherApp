@@ -37,7 +37,6 @@ namespace WeatherApp.Infrastructure.Services
                 {
                     var jsonResult = await result.Content.ReadAsStringAsync();
                     cityWeather = JsonConvert.DeserializeObject<CityWeatherDto>(jsonResult);
-
                 }
                 else
                     _messages.Add($"Cannot download data for city {cityName}");
@@ -57,7 +56,5 @@ namespace WeatherApp.Infrastructure.Services
             sb.Append(_apiSettings.Value.Key);
             return sb.ToString();
         }
-
-        
     }
 }

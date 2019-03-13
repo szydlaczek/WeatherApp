@@ -1,5 +1,3 @@
-using System;
-
 namespace WeatherApp.WebUI.Models
 {
     public class ErrorViewModel

@@ -8,9 +8,10 @@ namespace WeatherApp.Domain.Entities
         {
             UserRoles = new HashSet<UserRole>();
         }
+
         public string Id { get; set; }
 
         public string Name { get; set; }
-        public virtual ICollection<UserRole> UserRoles { get;  set; } 
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

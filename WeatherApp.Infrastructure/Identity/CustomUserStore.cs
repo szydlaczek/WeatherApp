@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WeatherApp.Domain.Entities;
@@ -13,7 +12,7 @@ namespace WeatherApp.Infrastructure.Identity
 {
     public class CustomUserStore : IUserStore<User>,
                                    IUserRoleStore<User>,
-                                   IUserPasswordStore<User>    
+                                   IUserPasswordStore<User>
     {
         #region Fields
 
@@ -21,7 +20,7 @@ namespace WeatherApp.Infrastructure.Identity
 
         #endregion Fields
 
-        #region Constructors        
+        #region Constructors
 
         public CustomUserStore(ApplicationDbContext context)
         {
@@ -41,7 +40,7 @@ namespace WeatherApp.Infrastructure.Identity
             {
                 throw new ArgumentNullException("user");
             }
-            
+
             await _context.Users.AddAsync(user);
             _context.SaveChanges();
 
@@ -99,7 +98,7 @@ namespace WeatherApp.Infrastructure.Identity
                 throw new ArgumentNullException("user");
             }
 
-            user.UserName=userName;
+            user.UserName = userName;
             _context.SaveChanges();
 
             return Task.CompletedTask;
@@ -124,16 +123,15 @@ namespace WeatherApp.Infrastructure.Identity
             }
 
             var findRole = await _context.Roles
-                .Where(r => string.Equals(r.Name,roleName, StringComparison.OrdinalIgnoreCase))
+                .Where(r => string.Equals(r.Name, roleName, StringComparison.OrdinalIgnoreCase))
                 .FirstOrDefaultAsync();
 
             if (findRole != null)
             {
-                _context.UserRoles.Add(new UserRole() {User=user, Role=findRole });                
+                _context.UserRoles.Add(new UserRole() { User = user, Role = findRole });
             }
 
             await _context.SaveChangesAsync();
-            
         }
 
         public async Task RemoveFromRoleAsync(User user, string roleName, CancellationToken cancellationToken)
@@ -149,8 +147,6 @@ namespace WeatherApp.Infrastructure.Identity
                 _context.UserRoles.Remove(user.UserRoles.Where(ur => ur.RoleId == findRole.Id).FirstOrDefault());
                 await _context.SaveChangesAsync();
             }
-
-            
         }
 
         public Task<IList<string>> GetRolesAsync(User user, CancellationToken cancellationToken)
@@ -205,11 +201,9 @@ namespace WeatherApp.Infrastructure.Identity
         {
             if (_context != null)
             {
-                _context.Dispose();                
+                _context.Dispose();
             }
         }
-
-        
 
         #endregion Methods
     }

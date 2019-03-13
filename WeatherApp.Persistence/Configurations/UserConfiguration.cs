@@ -20,8 +20,7 @@ namespace WeatherApp.Persistence.Configurations
                 Id = Guid.NewGuid().ToString(),
                 Password = "AQAAAAEAACcQAAAAEFW6zz2ufQ2jEvYA45ZIRW9Rc2I2t7kkUuwB5LucJRIxw6ayI+5isC9i9XIkd+M5rw==", //123456
                 UserName = "szydlo.grzegorz"
-            }); 
-            
+            });
         }
     }
 }

@@ -1,7 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using WeatherApp.Domain.Entities;
 
 namespace WeatherApp.Persistence.Context
@@ -12,6 +9,7 @@ namespace WeatherApp.Persistence.Context
             : base(options)
         {
         }
+
         public DbSet<City> Cities { get; set; }
         public DbSet<Weather> Weather { get; set; }
         public DbSet<Wind> Winds { get; set; }
@@ -19,6 +17,7 @@ namespace WeatherApp.Persistence.Context
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);

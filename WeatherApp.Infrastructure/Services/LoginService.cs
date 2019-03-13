@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using WeatherApp.Application.Infrastructure;
 using WeatherApp.Application.Interfaces;
@@ -12,6 +9,7 @@ namespace WeatherApp.Infrastructure.Identity
     public class LoginService : ILoginService
     {
         private readonly SignInManager<User> _signInManager;
+
         public LoginService(SignInManager<User> signInManager)
         {
             _signInManager = signInManager;

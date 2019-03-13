@@ -1,14 +1,11 @@
 ﻿using Mapster;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using WeatherApp.Application.Dtos;
 using WeatherApp.Domain.Entities;
 
 namespace WeatherApp.Application.Adapter
 {
-    public  class WeatherDtoAdapterConfig
+    public class WeatherDtoAdapterConfig
     {
         public static TypeAdapterConfig GetConfig()
         {

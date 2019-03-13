@@ -22,6 +22,7 @@ namespace WeatherApp.WebUI.Bootstrapping
 
             return services;
         }
+
         private static void ConfigureIdentityOptions(IdentityOptions options)
         {
             options.Password.RequireDigit = false;
@@ -29,7 +30,6 @@ namespace WeatherApp.WebUI.Bootstrapping
             options.Password.RequiredLength = 6;
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequireUppercase = false;
-            
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using WeatherApp.Application.Cities.Commands.AddCity;
 using WeatherApp.Application.Cities.Commands.UpdateCity;
-using WeatherApp.Application.Weather.Commands.AddCity;
 using WeatherApp.Application.Weather.Queries.GetAllCitiesWeather;
 using WeatherApp.WebUI.ViewModels;
 
@@ -23,10 +22,11 @@ namespace WeatherApp.WebUI.Controllers
             var result = await _mediator.Send(new GetAllCitiesWeatherQuery());
             return View(result);
         }
+
         [HttpPost]
         public async Task<IActionResult> AddCity(CityViewModel viewModel)
         {
-            var command = new AddCityCommand() { CityName=viewModel.CityName};
+            var command = new AddCityCommand() { CityName = viewModel.CityName };
             var response = await _mediator.Send(command);
             if (response.Errors.Any())
                 return BadRequest(response);
@@ -37,7 +37,7 @@ namespace WeatherApp.WebUI.Controllers
         public async Task<IActionResult> UpdateCity()
         {
             var command = new UpdateWeatherCommand();
-            var response=await _mediator.Send(command);
+            var response = await _mediator.Send(command);
             return Ok();
         }
     }
